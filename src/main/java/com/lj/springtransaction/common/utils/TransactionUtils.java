@@ -16,12 +16,16 @@ import org.springframework.transaction.interceptor.DefaultTransactionAttribute;
 @Component
 @Scope("prototype")//定义为多例 每个事务都是新的实例 目的解决线程安全问题
 public class TransactionUtils {
-
     // 全局接受事务状态
     private TransactionStatus transactionStatus;
+
     // 获取事务源
-    @Autowired
     private DataSourceTransactionManager dataSourceTransactionManager;
+
+    @Autowired
+    public TransactionUtils(DataSourceTransactionManager dataSourceTransactionManager) {
+        this.dataSourceTransactionManager = dataSourceTransactionManager;
+    }
 
 
     //开启事务

@@ -44,6 +44,7 @@ public class TransactionAspect {
      */
     @Pointcut("execution(public * com.lj.springtransaction.service..*.*(..))")
     public void TransactionPointCut() {
+
     }
 
     //异常通知：给添加事务的方法回滚事务，当方法抛出异常时
@@ -67,7 +68,6 @@ public class TransactionAspect {
      */
     @Around("TransactionPointCut()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
-
         TransactionStatus transactionStatus;
         //获取类注解
         MyTransaction annotation = joinPoint.getTarget().getClass().getAnnotation(MyTransaction.class);
@@ -82,33 +82,6 @@ public class TransactionAspect {
         Object proceed = joinPoint.proceed();
         transactionUtils.commit(transactionStatus);
         return proceed;
-    }
-
-    /**
-     * 获取目标对象的方法
-     *
-     * @return java.lang.reflect.Method
-     * @author liang_jun
-     * @date 2020/10/29 16:49
-     */
-    private Method getInvokedMethod(Class targetCls, ProceedingJoinPoint pJoinPoint) {
-        List<Class<? extends Object>> clazzList = new ArrayList<>();
-        Object[] args = pJoinPoint.getArgs();
-        for (Object arg : args) {
-            clazzList.add(arg.getClass());
-        }
-
-        Class[] argsCls = (Class[]) clazzList.toArray(new Class[0]);
-
-        String methodName = pJoinPoint.getSignature().getName();
-        Method method = null;
-        try {
-            method = targetCls.getMethod(methodName, argsCls);
-        } catch (NoSuchMethodException e) {
-            //不做任何处理,这个切面只处理事务相关逻辑
-            //其他任何异常不在这个切面的考虑范围
-        }
-        return method;
     }
 
 }

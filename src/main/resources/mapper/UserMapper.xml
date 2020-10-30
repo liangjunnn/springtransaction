@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lj.springtransaction.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.lj.springtransaction.pojo.response.UserVO">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_pwd" property="userPwd" jdbcType="VARCHAR"/>
+        <result column="user_age" property="userAge" jdbcType="INTEGER"/>
+        <result column="user_sex" property="userSex" jdbcType="INTEGER"/>
+        <result column="user_type" property="userType" jdbcType="INTEGER"/>
+        <result column="user_sno" property="userSno" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="INTEGER"/>
+        <result column="click_quantity" property="clickQuantity" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <insert id="saveUser">
+        INSERT INTO exam_user (
+        name
+        ,user_name
+        ,user_pwd
+        ,user_age
+        ,user_sex
+        ,user_type
+        ,user_sno
+        ,is_deleted
+        )
+        VALUES (
+        #{examUser.name
+        ,jdbcType = VARCHAR}
+        ,#{examUser.userName
+        ,jdbcType = VARCHAR}
+        ,#{examUser.userPwd
+        ,jdbcType = VARCHAR}
+        ,#{examUser.userAge
+        ,jdbcType = INTEGER}
+        ,#{examUser.userSex
+        ,jdbcType = INTEGER}
+        ,#{examUser.userType
+        ,jdbcType = INTEGER}
+        ,#{examUser.userSno
+        ,jdbcType = VARCHAR}
+        ,#{examUser.isDeleted
+        ,jdbcType = INTEGER}
+        )
+    </insert>
+
+    <select id="ListSelectUserAll" resultType="com.lj.springtransaction.model.ExamUser">
+        SELECT id
+            ,name
+            ,user_name userName
+            ,user_pwd userPwd
+            ,user_age userAge
+            ,user_sex userSex
+            ,user_type userType
+            ,user_sno userSno
+            ,create_time createTime
+            ,modify_time modifyTime
+            ,is_deleted isDeleted
+            ,click_quantity clickQuantity
+        FROM exam_user
+    </select>
+
+</mapper>

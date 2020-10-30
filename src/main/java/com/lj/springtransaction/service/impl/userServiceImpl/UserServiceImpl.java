@@ -12,6 +12,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
@@ -48,7 +49,12 @@ public class UserServiceImpl implements UserService {
         examUserRequest.setIsDeleted(1);
         BeanUtils.copyProperties(examUserRequest, examUser);
         int i = userMapper.saveUser(examUser);
-//        int y = 1 / 0;
+//        try {
+//            int y = 1 / 0;
+//        }catch (Exception e){
+//            e.getMessage();
+//            throw e;
+//        }
         return i;
     }
 

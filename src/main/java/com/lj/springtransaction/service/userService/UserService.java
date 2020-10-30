@@ -15,19 +15,19 @@ public interface UserService {
     /**
      * 添加用户
      *
-     * @param examUserRequest :  用户对象
+     * @param examUserRequest :用户对象
      * @return int 返回数据库操作影响行数
      * @author liang_jun
-     * @date 2020/10/29 15:45
+     * @date 2020/10/30 10:24
      */
     int saveUser(ExamUserRequest examUserRequest);
 
     /**
      * 查询用户信息
      *
-     * @return com.lj.springtransaction.common.Result<java.util.List < com.lj.springtransaction.pojo.response.UserVO>>
+     * @return {@link com.lj.springtransaction.common.Result<java.util.List<com.lj.springtransaction.pojo.response.UserVO>>} 返回用户信息
      * @author liang_jun
-     * @date 2020/10/30 9:34
+     * @date 2020/10/30 10:21
      */
     List<UserVO> ListGetUserAll();
 }

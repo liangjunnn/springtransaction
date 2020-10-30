@@ -38,7 +38,7 @@ public class UserController {
      * 添加用户
      *
      * @param examUserRequest :  用户对象
-     * @return com.lj.springtransaction.common.Result<java.lang.Object>
+     * @return {@link com.lj.springtransaction.common.Result<java.lang.Object>}
      * @author liang_jun
      * @date 2020/10/29 15:39
      */
@@ -54,9 +54,9 @@ public class UserController {
     /**
      * 查询用户信息
      *
-     * @return com.lj.springtransaction.common.Result<java.util.List < com.lj.springtransaction.pojo.response.UserVO>>
+     * @return {@link com.lj.springtransaction.common.Result<java.util.List<com.lj.springtransaction.pojo.response.UserVO>>} 返回用户信息
      * @author liang_jun
-     * @date 2020/10/30 9:34
+     * @date 2020/10/30 10:21
      */
     @GetMapping("/queryUserAll")
     public Result<List<UserVO>> queryUserAll() {

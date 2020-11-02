@@ -64,4 +64,22 @@
         FROM exam_user
     </select>
 
+    <select id="selectUserById" resultType="com.lj.springtransaction.model.ExamUser">
+        SELECT id
+            ,name
+            ,user_name userName
+            ,user_pwd userPwd
+            ,user_age userAge
+            ,user_sex userSex
+            ,user_type userType
+            ,user_sno userSno
+            ,create_time createTime
+            ,modify_time modifyTime
+            ,is_deleted isDeleted
+            ,click_quantity clickQuantity
+        FROM exam_user
+        WHERE id = #{userId}
+        LIMIT 1
+    </select>
+
 </mapper>

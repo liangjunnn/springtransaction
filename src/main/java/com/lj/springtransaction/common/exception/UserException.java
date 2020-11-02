@@ -21,4 +21,5 @@ public class UserException extends CustomException {
     public UserException(ErrorMsgEnum code, Throwable t) {
         super(code, t);
     }
+
 }

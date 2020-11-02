@@ -6,8 +6,8 @@ import com.lj.springtransaction.pojo.response.UserVO;
 import java.util.List;
 
 /**
- * @Description:
- * @ClassName: UserService
+ * @Description: 用户服务
+ * @ClassName: {@link UserService}
  * @Author: liang_jun
  * @Date: 2020/10/29 15:42
  */
@@ -30,4 +30,14 @@ public interface UserService {
      * @date 2020/10/30 10:21
      */
     List<UserVO> ListGetUserAll();
+
+    /**
+     * 根据用户唯一编号查询用户详情
+     *
+     * @param userId :  用户唯一编号
+     * @return {@link com.lj.springtransaction.common.Result<com.lj.springtransaction.pojo.response.UserVO>} 返回用户详情
+     * @author liang_jun
+     * @date 2020/10/30 16:59
+     */
+    UserVO findUserById(Long userId);
 }

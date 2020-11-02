@@ -9,10 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
- * @Description:
- * @ClassName: UserController
+ * @Description: 用户控制器
+ * @ClassName: {@link UserController}
  * @Author: liang_jun
  * @Date: 2020/10/29 15:34
  */
@@ -62,6 +63,25 @@ public class UserController {
     public Result<List<UserVO>> queryUserAll() {
         List<UserVO> userVOS = userService.ListGetUserAll();
         return new Result<List<UserVO>>(userVOS);
+    }
+
+    /**
+     * 根据用户唯一编号查询用户详情
+     *
+     * @param userId :  用户唯一编号
+     * @return {@link com.lj.springtransaction.common.Result<com.lj.springtransaction.pojo.response.UserVO>} 返回用户详情
+     * @author liang_jun
+     * @date 2020/10/30 16:59
+     */
+    @GetMapping("/queryUserById")
+    public Result<UserVO> queryUserById(Long userId) {
+        Optional<Long> id = Optional.ofNullable(userId);
+        if (!id.isPresent()) {
+            return new Result<UserVO>(ErrorMsgEnum.PARAMETER_EXCEPTION.getCode()
+                    , ErrorMsgEnum.PARAMETER_EXCEPTION.getMsg());
+        }
+        UserVO userInfo = userService.findUserById(userId);
+        return new Result<UserVO>(userInfo);
     }
 
 }

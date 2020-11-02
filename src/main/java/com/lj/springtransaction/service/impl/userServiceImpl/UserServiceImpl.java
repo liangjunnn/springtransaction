@@ -17,18 +17,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
- * @Description:
- * @ClassName: UserServiceImpl
+ * @Description: 用户逻辑实现
+ * @ClassName: {@link UserServiceImpl} 用户逻辑实现
  * @Author: liang_jun
  * @Date: 2020/10/29 15:43
  */
 //@MyTransaction
 @Service
 public class UserServiceImpl implements UserService {
+    /**
+     * 用户服务
+     */
     private UserMapper userMapper;
 
+    /**
+     * 构造器注入
+     *
+     * @param userMapper 用户服务
+     */
     @Autowired
     public UserServiceImpl(UserMapper userMapper) {
         this.userMapper = userMapper;
@@ -77,6 +86,29 @@ public class UserServiceImpl implements UserService {
             });
         }
         return userVOS;
+    }
+
+    /**
+     * 根据用户唯一编号查询用户详情
+     *
+     * @param userId :  用户唯一编号
+     * @return {@link Result< UserVO>} 返回用户详情
+     * @author liang_jun
+     * @date 2020/10/30 16:59
+     */
+    @Override
+    public UserVO findUserById(Long userId) {
+        ExamUser examUser = userMapper.selectUserById(userId);
+        boolean present = Optional.ofNullable(examUser).isPresent();
+        if (!present) {
+            return null;
+        }
+
+        UserVO userVO = new UserVO();
+        Optional.ofNullable(examUser).ifPresent(examUser1 -> {
+            BeanUtils.copyProperties(examUser, userVO);
+        });
+        return userVO;
     }
 
 }

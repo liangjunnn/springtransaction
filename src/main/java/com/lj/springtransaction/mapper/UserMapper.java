@@ -1,6 +1,8 @@
 package com.lj.springtransaction.mapper;
 
+import com.lj.springtransaction.common.Result;
 import com.lj.springtransaction.model.ExamUser;
+import com.lj.springtransaction.pojo.response.UserVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -30,4 +32,14 @@ public interface UserMapper {
      * @date 2020/10/30 10:21
      */
     List<ExamUser> ListSelectUserAll();
+
+    /**
+     * 根据用户唯一编号查询用户详情
+     *
+     * @param userId :  用户唯一编号
+     * @return {@link Result < UserVO>} 返回用户详情
+     * @author liang_jun
+     * @date 2020/10/30 16:59
+     */
+    ExamUser selectUserById(Long userId);
 }

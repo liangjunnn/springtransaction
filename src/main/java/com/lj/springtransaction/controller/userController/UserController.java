@@ -84,4 +84,23 @@ public class UserController {
         return new Result<UserVO>(userInfo);
     }
 
+    /**
+     * 通过用户名称查询用户
+     *
+     * @param name :  用户名称
+     * @return {@link com.lj.springtransaction.common.Result<com.lj.springtransaction.pojo.response.UserVO>} 返回用户信息
+     * @author liang_jun
+     * @date 2020/11/2 14:16
+     */
+    @GetMapping("/queryUserByName")
+    public Result<UserVO> queryUserByName(String name) {
+        boolean present = Optional.ofNullable(name).isPresent();
+        if (!present) {
+            return new Result<UserVO>(ErrorMsgEnum.PARAMETER_EXCEPTION.getCode(), ErrorMsgEnum.PARAMETER_EXCEPTION.getMsg());
+        }
+
+        UserVO userInfo = userService.findUserByName(name);
+        return new Result<UserVO>(userInfo);
+    }
+
 }

@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
 
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    @ExceptionHandler({UserException.class, CustomException.class})
+    @ExceptionHandler({UserException.class, CustomException.class, BizException.class})
     Result<String> handleException(CustomException e) {
         log.error(String.valueOf(e), e);
         return new Result<String>(e.getExceptionCode().getCode(), e.getMessage());

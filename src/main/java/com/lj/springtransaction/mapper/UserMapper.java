@@ -42,4 +42,14 @@ public interface UserMapper {
      * @date 2020/10/30 16:59
      */
     ExamUser selectUserById(Long userId);
+
+    /**
+     * 根据用户名称查询用户信息
+     *
+     * @param name :  用户名称
+     * @return com.lj.springtransaction.model.ExamUser
+     * @author liang_jun
+     * @date 2020/11/2 14:19
+     */
+    ExamUser selectUserByName(@Param("name") String name);
 }

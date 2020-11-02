@@ -8,6 +8,7 @@ import com.lj.springtransaction.pojo.request.ExamUserRequest;
 import com.lj.springtransaction.pojo.response.UserVO;
 import com.lj.springtransaction.service.userService.UserService;
 import jdk.nashorn.internal.objects.annotations.Getter;
+import org.apache.catalina.User;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,6 +110,25 @@ public class UserServiceImpl implements UserService {
             BeanUtils.copyProperties(examUser, userVO);
         });
         return userVO;
+    }
+
+    /**
+     * 通过用户名称查询用户
+     *
+     * @param name :  用户名称
+     * @return {@link com.lj.springtransaction.common.Result<com.lj.springtransaction.pojo.response.UserVO>} 返回用户信息
+     * @author liang_jun
+     * @date 2020/11/2 14:16
+     */
+    @Override
+    public UserVO findUserByName(String name) {
+        UserVO userVO = new UserVO();
+        ExamUser examUser = userMapper.selectUserByName(name);
+        if (null != examUser) {
+            BeanUtils.copyProperties(examUser, userVO);
+            return userVO;
+        }
+        return null;
     }
 
 }

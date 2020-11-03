@@ -93,13 +93,14 @@ public class UserController {
      * @date 2020/11/2 14:16
      */
     @GetMapping("/queryUserByName")
-    public Result<UserVO> queryUserByName(String name) {
-        boolean present = Optional.ofNullable(name).isPresent();
-        if (!present) {
+    public Result<UserVO> queryUserByName(String name, String userName) {
+        boolean nameFlag = Optional.ofNullable(name).isPresent();
+        boolean userNameFlag = Optional.ofNullable(userName).isPresent();
+        if (!nameFlag || !userNameFlag) {
             return new Result<UserVO>(ErrorMsgEnum.PARAMETER_EXCEPTION.getCode(), ErrorMsgEnum.PARAMETER_EXCEPTION.getMsg());
         }
 
-        UserVO userInfo = userService.findUserByName(name);
+        UserVO userInfo = userService.findUserByName(name,userName);
         return new Result<UserVO>(userInfo);
     }
 

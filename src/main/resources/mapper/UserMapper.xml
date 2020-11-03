@@ -97,6 +97,8 @@
             ,click_quantity clickQuantity
         FROM exam_user
         WHERE name = #{name}
+        AND user_name = #{userName}
+        LIMIT 1
     </select>
 
 </mapper>

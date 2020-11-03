@@ -45,9 +45,10 @@ public interface UserService {
      * 通过用户名称查询用户
      *
      * @param name :  用户名称
+     * @param userName
      * @return {@link com.lj.springtransaction.common.Result<com.lj.springtransaction.pojo.response.UserVO>} 返回用户信息
      * @author liang_jun
      * @date 2020/11/2 14:16
      */
-    UserVO findUserByName(String name);
+    UserVO findUserByName(String name,String userName);
 }

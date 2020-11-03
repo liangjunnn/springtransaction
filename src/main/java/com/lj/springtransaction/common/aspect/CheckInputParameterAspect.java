@@ -39,6 +39,13 @@ public class CheckInputParameterAspect {
         this.dfaUtil = dfaUtil;
     }
 
+    /**
+     * 敏感信息切入点
+     *
+     * @return void
+     * @author liang_jun
+     * @date 2020/11/2 16:45
+     */
     @Pointcut("execution(public * com.lj.springtransaction.controller..*.*(..))")
     public void params() {
     }
@@ -54,20 +61,22 @@ public class CheckInputParameterAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = Objects.requireNonNull(attributes).getRequest();
         Object[] args = point.getArgs();
-
+        StringBuffer sbf = new StringBuffer();
         for (Object o : args) {
             if (o instanceof HttpServletRequest || o instanceof HttpServletResponse) {
                 continue;
             }
             String s = JSONObject.toJSONString(o);
-            Set<String> sensitiveWordByDFAMap = dfaUtil.getSensitiveWordByDFAMap(StringUtils.join(s, ","), 1);
-            log.info("敏感词有" + sensitiveWordByDFAMap.size() + "个");
-            if (sensitiveWordByDFAMap.size() >= 1) {
-                //自定义的异常
-                throw new BizException(ErrorMsgEnum.CONTENT_SENSITIVE_CODE);
-            }
-            log.info("当前调用接口-[" + request.getRequestURL() + "]");
+            String str = s.replace("\"", "");
+            sbf.append(str);
         }
+        Set<String> sensitiveWordByDFAMap = dfaUtil.getSensitiveWordByDFAMap(sbf, 1);
+        log.info("敏感词有" + sensitiveWordByDFAMap.size() + "个");
+        if (sensitiveWordByDFAMap.size() >= 1) {
+            //自定义的异常
+            throw new BizException(ErrorMsgEnum.CONTENT_SENSITIVE_CODE);
+        }
+        log.info("当前调用接口-[" + request.getRequestURL() + "]");
         return args;
     }
 

@@ -92,7 +92,7 @@ public class DFAUtil {
      * @param matchType 检查类型，如大中华帝国牛逼对应大中华和大中华帝国两个关键字，1为最小检查，会检查出大中华，2位最大，会检查出大中华帝国
      * @return
      */
-    public Set<String> getSensitiveWordByDFAMap(String string, int matchType) {
+    public Set<String> getSensitiveWordByDFAMap(StringBuffer string, int matchType) {
         Set<String> set = new HashSet<>();
         for (int i = 0; i < string.length(); i++) {
             char c = string.charAt(i);
@@ -116,7 +116,7 @@ public class DFAUtil {
      * @param matchType  1：最小匹配规则，2：最大匹配规则
      * @return
      */
-    public int getSensitiveLengthByDFAMap(String string, int beginIndex, int matchType) {
+    public int getSensitiveLengthByDFAMap(StringBuffer string, int beginIndex, int matchType) {
         //当前匹配的长度
         int nowLength = 0;
         //最终匹配敏感词的长度，因为匹配规则2，如果大中华帝，对应大中华，大中华帝国，在华的时候，nowLength=3，因为是最后一个字，将nowLenth赋给resultLength

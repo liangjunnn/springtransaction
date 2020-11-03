@@ -7,14 +7,10 @@ import com.lj.springtransaction.model.ExamUser;
 import com.lj.springtransaction.pojo.request.ExamUserRequest;
 import com.lj.springtransaction.pojo.response.UserVO;
 import com.lj.springtransaction.service.userService.UserService;
-import jdk.nashorn.internal.objects.annotations.Getter;
-import org.apache.catalina.User;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,14 +112,15 @@ public class UserServiceImpl implements UserService {
      * 通过用户名称查询用户
      *
      * @param name :  用户名称
+     * @param userName
      * @return {@link com.lj.springtransaction.common.Result<com.lj.springtransaction.pojo.response.UserVO>} 返回用户信息
      * @author liang_jun
      * @date 2020/11/2 14:16
      */
     @Override
-    public UserVO findUserByName(String name) {
+    public UserVO findUserByName(String name, String userName) {
         UserVO userVO = new UserVO();
-        ExamUser examUser = userMapper.selectUserByName(name);
+        ExamUser examUser = userMapper.selectUserByName(name,userName);
         if (null != examUser) {
             BeanUtils.copyProperties(examUser, userVO);
             return userVO;

@@ -51,4 +51,14 @@ public interface UserService {
      * @date 2020/11/2 14:16
      */
     UserVO findUserByName(String name,String userName);
+
+    /**
+     * 模糊查询用户信息
+     *
+     * @param name : 用户名称
+     * @return {@link com.lj.springtransaction.common.Result<com.lj.springtransaction.pojo.response.UserVO>} 返回用户信息
+     * @author liang_jun
+     * @date 2020/11/3 10:52
+     */
+    List<UserVO> indistinctFindUser(String name);
 }

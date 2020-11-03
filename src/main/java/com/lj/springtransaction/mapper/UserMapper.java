@@ -51,5 +51,15 @@ public interface UserMapper {
      * @author liang_jun
      * @date 2020/11/2 14:19
      */
-    ExamUser selectUserByName(@Param("name") String name,@Param("userName") String userName);
+    ExamUser selectUserByName(@Param("name") String name, @Param("userName") String userName);
+
+    /**
+     * 模糊查询用户信息
+     *
+     * @param name : 用户名称
+     * @return {@link com.lj.springtransaction.common.Result<com.lj.springtransaction.model.ExamUser>} 返回用户信息
+     * @author liang_jun
+     * @date 2020/11/3 10:52
+     */
+    List<ExamUser> indistinctSelectUser(@Param("name") String name);
 }

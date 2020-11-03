@@ -42,7 +42,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BindException.class)
     Result<String> handleException(BindException e) {
         log.error(String.valueOf(e), e);
-        return new Result<String>(ErrorMsgEnum.PARAMETER_EXCEPTION.getCode(), e.getFieldError().getDefaultMessage());
+        return new Result<String>(ErrorMsgEnum.REQUEST_PARAMETER_EXCEPTION.getCode(), e.getFieldError().getDefaultMessage());
     }
 
     @ResponseBody

@@ -111,7 +111,7 @@ public class UserServiceImpl implements UserService {
     /**
      * 通过用户名称查询用户
      *
-     * @param name :  用户名称
+     * @param name     :  用户名称
      * @param userName
      * @return {@link com.lj.springtransaction.common.Result<com.lj.springtransaction.pojo.response.UserVO>} 返回用户信息
      * @author liang_jun
@@ -120,12 +120,34 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserVO findUserByName(String name, String userName) {
         UserVO userVO = new UserVO();
-        ExamUser examUser = userMapper.selectUserByName(name,userName);
+        ExamUser examUser = userMapper.selectUserByName(name, userName);
         if (null != examUser) {
             BeanUtils.copyProperties(examUser, userVO);
             return userVO;
         }
         return null;
+    }
+
+    /**
+     * 模糊查询用户信息
+     *
+     * @param name : 用户名称
+     * @return {@link com.lj.springtransaction.common.Result<com.lj.springtransaction.pojo.response.UserVO>} 返回用户信息
+     * @author liang_jun
+     * @date 2020/11/3 10:52
+     */
+    @Override
+    public List<UserVO> indistinctFindUser(String name) {
+        List<UserVO> userVOS = new ArrayList<UserVO>();
+        List<ExamUser> examUsers = userMapper.indistinctSelectUser(name);
+        if (CollectionUtils.isNotEmpty(examUsers)) {
+            examUsers.forEach(examUser -> {
+                UserVO userVO = new UserVO();
+                BeanUtils.copyProperties(examUser, userVO);
+                userVOS.add(userVO);
+            });
+        }
+        return userVOS;
     }
 
 }

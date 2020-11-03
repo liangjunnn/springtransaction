@@ -13,7 +13,7 @@ public enum ErrorMsgEnum {
     /**
      * 参数异常
      */
-    PARAMETER_EXCEPTION("100001", "参数异常"),
+    REQUEST_PARAMETER_EXCEPTION("100001", "请求参数异常"),
 
 
     /**

@@ -101,4 +101,21 @@
         LIMIT 1
     </select>
 
+    <select id="indistinctSelectUser" resultType="com.lj.springtransaction.model.ExamUser">
+        SELECT id
+            ,name
+            ,user_name userName
+            ,user_pwd userPwd
+            ,user_age userAge
+            ,user_sex userSex
+            ,user_type userType
+            ,user_sno userSno
+            ,create_time createTime
+            ,modify_time modifyTime
+            ,is_deleted isDeleted
+            ,click_quantity clickQuantity
+        FROM exam_user
+        WHERE LOCATE(#{name},name) > 0
+    </select>
+
 </mapper>

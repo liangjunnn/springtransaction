@@ -31,7 +31,11 @@ public enum ErrorMsgEnum {
      */
     USER_INEXISTENCE_ERROR("100004", "用户不存在"),
 
+    /**
+     * 您输入的内容有敏感词
+     */
     CONTENT_SENSITIVE_CODE("100005", "您输入的内容有敏感词"),
+
     /**
      * 未知异常
      */

@@ -31,6 +31,7 @@ public class CheckConfig {
         set.add("毛泽东");
         set.add("台独");
         set.add("微信");
+        set.add("qq");
         //将集合放到算法里，这里可以优化，写词库文件等等，
         dfaUtil.createDFAHashMap(set);
     }
